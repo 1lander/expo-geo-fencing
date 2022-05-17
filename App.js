@@ -16,7 +16,7 @@ export default function App() {
       }
       if (locations) {
         const [location] = locations;
-        console.log(location);
+        console.log("new location");
       }
     }
   );
@@ -28,10 +28,10 @@ export default function App() {
         throw new Error(error.message);
       }
       if (eventType === Location.GeofencingEventType.Enter) {
-        console.log("entered region", region);
+        console.log("entered region");
       }
       if (eventType === Location.GeofencingEventType.Exit) {
-        console.log("exited region", region);
+        console.log("exited region");
       }
     }
   );
@@ -127,6 +127,7 @@ export default function App() {
           const hasStartedLocation =
             await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME);
           if (hasStartedLocation) {
+            console.log("stopping location updates");
             await Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME);
           }
         }
@@ -138,6 +139,7 @@ export default function App() {
             GEOFENCING_TASK_NAME
           );
           if (hasStartedGeo) {
+            console.log("stopping geofencing");
             await Location.stopGeofencingAsync(GEOFENCING_TASK_NAME);
           }
         }
